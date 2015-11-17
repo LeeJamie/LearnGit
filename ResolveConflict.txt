@@ -1,0 +1,169 @@
+#### 解决冲突Resolve conflict
+
+
+[root@Jamie-study Liao_Git_20151116]# git branch
+* master
+[root@Jamie-study Liao_Git_20151116]# git status
+# On branch master
+nothing to commit (working directory clean)
+[root@Jamie-study Liao_Git_20151116]# ll
+总用量 12
+-rw-r--r-- 1 root root 2731 11月 17 14:23 branch.txt
+-rw-r--r-- 1 root root  191 11月 17 14:15 readme.txt
+-rw-r--r-- 1 root root   46 11月 16 17:30 test.txt
+[root@Jamie-study Liao_Git_20151116]# git branch featurel
+[root@Jamie-study Liao_Git_20151116]# git checkout featurel
+Switched to branch 'featurel'
+[root@Jamie-study Liao_Git_20151116]# git branch
+* featurel
+  master
+[root@Jamie-study Liao_Git_20151116]# vim readme.txt 
+[root@Jamie-study Liao_Git_20151116]# git status
+# On branch featurel
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   readme.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+[root@Jamie-study Liao_Git_20151116]# git add readme.txt 
+[root@Jamie-study Liao_Git_20151116]# git commit -m 'AND simple'
+[featurel 7b7ff1d] AND simple
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+[root@Jamie-study Liao_Git_20151116]# git log --pretty=one
+7b7ff1dc045352f9767be6f8ea0b4cb8d57730aa AND simple
+495654996ad68d55092a9fa822712507653cc569 Learning operation branch
+c749879fb6b93d96d67b8ad0e3f5b92c62266670 add branch file to Test_Branch
+2895e4a92851ba228120dbe51dde1dcf89b67f28 branch test
+01b3e6f321096e0e6ab4260453853e62143e9a16 add test.txt
+3aa7d68282b03b904ccd6cb21593e49a04876949 remove test.txt
+cdfdccd2ddcc73ad5fd41aed88953ece50e9c2cd add test.txt
+7b504f09ac8bcedb6e1fc82ce822bb8905ec49ed add tracks file
+be17599c44f9e84c55fd30e798568209c7c90352 git tracks changes
+2a731185a6ba7ec5e93e189a64550ff8254e60be append GPL
+25fea504ecff3a76cbf1561dcd30be36590d7bff add distributed
+c2ae013894270c79271cc60aaececfc655c88cc6 wrote a readme file
+[root@Jamie-study Liao_Git_20151116]# git checkout master
+Switched to branch 'master'
+[root@Jamie-study Liao_Git_20151116]# git branch
+  featurel
+* master
+[root@Jamie-study Liao_Git_20151116]# ll
+总用量 12
+-rw-r--r-- 1 root root 2731 11月 17 14:23 branch.txt
+-rw-r--r-- 1 root root  191 11月 17 15:07 readme.txt
+-rw-r--r-- 1 root root   46 11月 16 17:30 test.txt
+[root@Jamie-study Liao_Git_20151116]# cat readme.txt 
+Git is a distributed version control system.
+Git is free sofrware distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of file.
+Creating a new branch is quick.
+[root@Jamie-study Liao_Git_20151116]# vim readme.txt 
+[root@Jamie-study Liao_Git_20151116]# cat readme.txt 
+Git is a distributed version control system.
+Git is free sofrware distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of file.
+Creating a new branch is quick & simple.
+[root@Jamie-study Liao_Git_20151116]# git status
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   readme.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+[root@Jamie-study Liao_Git_20151116]# git add readme.txt 
+[root@Jamie-study Liao_Git_20151116]# git commit -m '& simple'
+[master fb39089] & simple
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+[root@Jamie-study Liao_Git_20151116]# 
+[root@Jamie-study Liao_Git_20151116]# git branch
+  featurel
+* master
+[root@Jamie-study Liao_Git_20151116]# git merge featurel
+Auto-merging readme.txt
+CONFLICT (content): Merge conflict in readme.txt
+Automatic merge failed; fix conflicts and then commit the result.
+[root@Jamie-study Liao_Git_20151116]# 
+######
+这种情况下，Git无法执行“快速合并”，只能试图把各自的修改合并起来，但这种合并就可能会有冲突，：
+冲突了！Git告诉我们，readme.txt文件存在冲突，必须手动解决冲突后再提交。git status也可以告诉我们冲突的文件：
+[root@Jamie-study Liao_Git_20151116]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#
+# Unmerged paths:
+#   (use "git add/rm <file>..." as appropriate to mark resolution)
+#
+#	both modified:      readme.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+[root@Jamie-study Liao_Git_20151116]# 
+[root@Jamie-study Liao_Git_20151116]# echo "我们可以直接查看readme.txt的内容："
+我们可以直接查看readme.txt的内容：
+[root@Jamie-study Liao_Git_20151116]# cat readme.txt 
+Git is a distributed version control system.
+Git is free sofrware distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of file.
+<<<<<<< HEAD
+Creating a new branch is quick & simple.
+=======
+Creating a new branch is quick AND simple.
+>>>>>>> featurel
+[root@Jamie-study Liao_Git_20151116]# 
+[root@Jamie-study Liao_Git_20151116]# vim readme.txt 
+[root@Jamie-study Liao_Git_20151116]# cat readme.txt 
+Git is a distributed version control system.
+Git is free sofrware distributed under the GPL.
+Git has a mutable index called stage.
+Git tracks changes of file.
+Creating a new branch is quick AND simple.
+[root@Jamie-study Liao_Git_20151116]# 
+[root@Jamie-study Liao_Git_20151116]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#
+# Unmerged paths:
+#   (use "git add/rm <file>..." as appropriate to mark resolution)
+#
+#	both modified:      readme.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+[root@Jamie-study Liao_Git_20151116]# git add readme.txt 
+[root@Jamie-study Liao_Git_20151116]# git commit -m 'conflict fixed'
+[master 1e5d186] conflict fixed
+[root@Jamie-study Liao_Git_20151116]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 3 commits.
+#
+nothing to commit (working directory clean)
+[root@Jamie-study Liao_Git_20151116]# 
+
+[root@Jamie-study Liao_Git_20151116]# git log --graph --pretty=oneline --abbrev-commit
+*   1e5d186 conflict fixed
+|\  
+| * 7b7ff1d AND simple
+* | fb39089 & simple
+|/  
+* 4956549 Learning operation branch
+* c749879 add branch file to Test_Branch
+* 2895e4a branch test
+* 01b3e6f add test.txt
+* 3aa7d68 remove test.txt
+* cdfdccd add test.txt
+* 7b504f0 add tracks file
+* be17599 git tracks changes
+* 2a73118 append GPL
+* 25fea50 add distributed
+* c2ae013 wrote a readme file
+[root@Jamie-study Liao_Git_20151116]# 
+
+注：git log --graph命令可以看到分支合并图
+
+
+
