@@ -5,3 +5,6 @@ Git tracks changes of file.
 Creating a new branch is quick and simple.
 add merge
 BUG branch
+
+
+6.修复bug
