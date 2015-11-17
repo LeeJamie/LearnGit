@@ -1,2 +1,80 @@
 this is branch test file
 --By Jamie
+
+[root@Jamie-study Liao_Git_20151116]# git branch
+* master
+[root@Jamie-study Liao_Git_20151116]# git branch Test_Branch
+[root@Jamie-study Liao_Git_20151116]# git branch
+  Test_Branch
+* master
+[root@Jamie-study Liao_Git_20151116]# git checkout Test_Branch
+Switched to branch 'Test_Branch'
+[root@Jamie-study Liao_Git_20151116]# git branche
+git: 'branche' is not a git command. See 'git --help'.
+
+Did you mean this?
+	branch
+[root@Jamie-study Liao_Git_20151116]# git branch
+* Test_Branch
+  master
+[root@Jamie-study Liao_Git_20151116]# ll
+总用量 8
+-rw-r--r-- 1 root root 191 11月 17 14:15 readme.txt
+-rw-r--r-- 1 root root  46 11月 16 17:30 test.txt
+[root@Jamie-study Liao_Git_20151116]# vim branch.txt
+[root@Jamie-study Liao_Git_20151116]# cat branch.txt 
+this is branch test file
+--By Jamie
+[root@Jamie-study Liao_Git_20151116]# git status
+# On branch Test_Branch
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	branch.txt
+nothing added to commit but untracked files present (use "git add" to track)
+[root@Jamie-study Liao_Git_20151116]# git add branch.txt 
+[root@Jamie-study Liao_Git_20151116]# git status
+# On branch Test_Branch
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   branch.txt
+#
+[root@Jamie-study Liao_Git_20151116]# git commit -m 'add branch file to
+Test_Branch'
+[Test_Branch c749879] add branch file to Test_Branch
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+ create mode 100644 branch.txt
+[root@Jamie-study Liao_Git_20151116]# git status
+# On branch Test_Branch
+nothing to commit (working directory clean)
+[root@Jamie-study Liao_Git_20151116]# git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 1 commit.
+[root@Jamie-study Liao_Git_20151116]# git branch
+  Test_Branch
+* master
+[root@Jamie-study Liao_Git_20151116]# ll
+总用量 8
+-rw-r--r-- 1 root root 191 11月 17 14:15 readme.txt
+-rw-r--r-- 1 root root  46 11月 16 17:30 test.txt
+[root@Jamie-study Liao_Git_20151116]# git merge Test_Branch
+Updating 2895e4a..c749879
+Fast-forward
+ branch.txt |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+ create mode 100644 branch.txt
+[root@Jamie-study Liao_Git_20151116]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 2 commits.
+#
+nothing to commit (working directory clean)
+[root@Jamie-study Liao_Git_20151116]# ll
+总用量 12
+-rw-r--r-- 1 root root  36 11月 17 14:22 branch.txt
+-rw-r--r-- 1 root root 191 11月 17 14:15 readme.txt
+-rw-r--r-- 1 root root  46 11月 16 17:30 test.txt
+[root@Jamie-study Liao_Git_20151116]# cat branch.txt 
+this is branch test file
+--By Jamie
+[root@Jamie-study Liao_Git_20151116]# 
