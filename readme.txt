@@ -5,3 +5,11 @@ Git tracks changes of file.
 Creating a new branch is quick and simple.
 add merge
 BUG branch
+
+bug bug bug
+bug bug bug
+bug bug bug
+bug bug bug
+
+
+dev dev dev dev
