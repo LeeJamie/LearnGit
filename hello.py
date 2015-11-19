@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env
 
 print 'hello ,Grab branch'
 
