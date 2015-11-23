@@ -16,3 +16,9 @@ bug bug bug
 
 
 dev dev dev dev
+
+###########
+增加别名设置
+alias.co=checkout
+alias.ci=commit
+alias.br=branch
