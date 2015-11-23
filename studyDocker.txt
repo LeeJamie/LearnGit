@@ -1,0 +1,45 @@
+[root@dd-Test-Work ~]# rpm -qa | grep epel
+[root@dd-Test-Work ~]# rpm -qa | grep docker
+[root@dd-Test-Work ~]# echo "yum安装epel和docker"
+yum安装epel和docker
+[root@dd-Test-Work ~]# cat /etc/issue
+CentOS release 6.6 (Final)
+Kernel \r on an \m
+
+[root@dd-Test-Work ~]# uname -a
+Linux dd-Test-Work 2.6.32-504.el6.x86_64 #1 SMP Wed Oct 15 04:27:16 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+
+[root@dd-Test-Work ~]# yum install http://mirrors.yun-idc.com/epel/6/i386/epel-release-6-8.noarch.rpm
+[root@dd-Test-Work ~]# yum install docker-io
+
+[root@dd-Test-Work ~]# service docker status
+docker 已停
+[root@dd-Test-Work ~]# service docker start
+Starting cgconfig service:                                 [确定]
+Starting docker:	                                   [确定]
+[root@dd-Test-Work ~]# chkconfig docker on
+[root@dd-Test-Work ~]# chkconfig --list | grep docker
+docker         	0:关闭	1:关闭	2:启用	3:启用	4:启用	5:启用	6:关闭
+[root@dd-Test-Work ~]# 
+[root@dd-Test-Work ~]# docker search centos
+NAME                                        DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+centos                                      The official build of CentOS.                   1652      [OK]       
+jdeathe/centos-ssh                          CentOS-6 6.6 x86_64 / EPEL/IUS Repos / Ope...   11                   [OK]
+blalor/centos                               Bare-bones base CentOS 6.5 image                9                    [OK]
+million12/centos-supervisor                 Base CentOS-7 with supervisord launcher, h...   7                    [OK]
+... ....(此次显示省略。。。)
+... ....(此次显示省略。。。)
+
+[root@dd-Test-Work ~]# docker search ubuntu
+NAME                           DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+ubuntu                         Ubuntu is a Debian-based Linux operating s...   2698      [OK]       
+ubuntu-upstart                 Upstart is an event-based replacement for ...   46        [OK]       
+torusware/speedus-ubuntu       Always updated official Ubuntu docker imag...   25                   [OK]
+sequenceiq/hadoop-ubuntu       An easy way to try Hadoop on Ubuntu             23                   [OK]
+
+
+
+
+
+
+
